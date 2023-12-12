@@ -17,6 +17,7 @@ public class BMS {
         // TODO code application logic here
         
         //ghp_DshWRGyrt1gH5HcNfightDRy1fZ9db2GVBgh
+        System.out.println("yes");
     }
     
 }
