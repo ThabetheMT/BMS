@@ -4,6 +4,8 @@
  */
 package bms;
 
+import barbershop.jframe.LoginJframe;
+
 /**
  *
  * @author Acer
@@ -17,7 +19,11 @@ public class BMS {
         // TODO code application logic here
         
         //ghp_DshWRGyrt1gH5HcNfightDRy1fZ9db2GVBgh
-        System.out.println("yes");
+       // System.out.println("yes");
+       
+        LoginJframe l = new LoginJframe();
+        l.setVisible(true);
+       
     }
     
 }
