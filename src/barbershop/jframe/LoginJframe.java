@@ -61,8 +61,8 @@ public class LoginJframe extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel9.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel9.setFont(new java.awt.Font("Segoe UI Black", 1, 86)); // NOI18N
+        jLabel9.setBackground(new java.awt.Color(187, 187, 187));
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 86)); // NOI18N
         jLabel9.setText("S");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 330, 90, 90));
 
@@ -73,6 +73,7 @@ public class LoginJframe extends javax.swing.JFrame {
 
         jLabel11.setBackground(new java.awt.Color(0, 0, 0));
         jLabel11.setFont(new java.awt.Font("Segoe UI Black", 1, 86)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("M");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, 90, 90));
 
