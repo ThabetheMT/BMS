@@ -64,16 +64,19 @@ public class SignupJframe extends javax.swing.JFrame {
 
         jLabel9.setBackground(new java.awt.Color(0, 0, 0));
         jLabel9.setFont(new java.awt.Font("Segoe UI Black", 1, 86)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("S");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 330, 90, 90));
 
         jLabel10.setBackground(new java.awt.Color(0, 0, 0));
         jLabel10.setFont(new java.awt.Font("Segoe UI Black", 1, 86)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("B");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 90, 90));
 
         jLabel11.setBackground(new java.awt.Color(0, 0, 0));
         jLabel11.setFont(new java.awt.Font("Segoe UI Black", 1, 86)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("M");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, 90, 90));
 
@@ -145,7 +148,13 @@ public class SignupJframe extends javax.swing.JFrame {
 
         jButton4.setBackground(new java.awt.Color(204, 0, 51));
         jButton4.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("Signup");
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
 
         jLabel7.setBackground(new java.awt.Color(0, 0, 0));
         jLabel7.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
@@ -253,6 +262,7 @@ public class SignupJframe extends javax.swing.JFrame {
 
         jButton3.setBackground(new java.awt.Color(204, 0, 51));
         jButton3.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("X");
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -263,7 +273,13 @@ public class SignupJframe extends javax.swing.JFrame {
 
         jButton5.setBackground(new java.awt.Color(204, 0, 51));
         jButton5.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setText("<< back");
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton5MouseClicked(evt);
+            }
+        });
         jPanel2.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 110, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -289,6 +305,16 @@ public class SignupJframe extends javax.swing.JFrame {
        
         System.exit(0);
     }//GEN-LAST:event_jButton3MouseClicked
+
+    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+        
+        new LoginJframe().setVisible(true);
+    }//GEN-LAST:event_jButton5MouseClicked
+
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+        
+        new HomeJFrame().setVisible(true);
+    }//GEN-LAST:event_jButton4MouseClicked
 
     /**
      * @param args the command line arguments

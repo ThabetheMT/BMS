@@ -35,6 +35,9 @@ public class HomeJFrame extends javax.swing.JFrame {
         jPanel7 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        jPanel16 = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -69,9 +72,11 @@ public class HomeJFrame extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(0, 102, 102));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("HOME");
 
         jPanel8.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel8.setForeground(new java.awt.Color(255, 255, 255));
         jPanel8.setPreferredSize(new java.awt.Dimension(100, 1));
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
@@ -86,6 +91,7 @@ public class HomeJFrame extends javax.swing.JFrame {
         );
 
         jPanel7.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel7.setForeground(new java.awt.Color(255, 255, 255));
         jPanel7.setPreferredSize(new java.awt.Dimension(100, 1));
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -100,6 +106,7 @@ public class HomeJFrame extends javax.swing.JFrame {
         );
 
         jPanel6.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel6.setForeground(new java.awt.Color(255, 255, 255));
         jPanel6.setPreferredSize(new java.awt.Dimension(100, 1));
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -159,6 +166,46 @@ public class HomeJFrame extends javax.swing.JFrame {
 
         jPanel2.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, 5, 70));
 
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("Welcome, Admin");
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(155, 40, 100, -1));
+
+        jPanel16.setBackground(new java.awt.Color(153, 0, 0));
+        jPanel16.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel16MouseClicked(evt);
+            }
+        });
+
+        jLabel11.setBackground(new java.awt.Color(153, 0, 0));
+        jLabel11.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("X");
+        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel11MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
+        jPanel16.setLayout(jPanel16Layout);
+        jPanel16Layout.setHorizontalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel16Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(jLabel11)
+                .addContainerGap(14, Short.MAX_VALUE))
+        );
+        jPanel16Layout.setVerticalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel16Layout.createSequentialGroup()
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        jPanel2.add(jPanel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 10, 50, -1));
+
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 70));
 
         jPanel3.setBackground(new java.awt.Color(0, 0, 0));
@@ -168,6 +215,7 @@ public class HomeJFrame extends javax.swing.JFrame {
         jPanel10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Remove all clients");
         jPanel10.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 130, -1));
 
@@ -186,6 +234,7 @@ public class HomeJFrame extends javax.swing.JFrame {
         jPanel11.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Get a client");
         jPanel11.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 110, -1));
 
@@ -195,6 +244,7 @@ public class HomeJFrame extends javax.swing.JFrame {
         jPanel12.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel5.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Add a client");
         jPanel12.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 110, -1));
 
@@ -204,6 +254,7 @@ public class HomeJFrame extends javax.swing.JFrame {
         jPanel13.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel6.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("View all clients");
         jPanel13.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 110, -1));
 
@@ -212,6 +263,7 @@ public class HomeJFrame extends javax.swing.JFrame {
         jPanel9.setBackground(new java.awt.Color(0, 0, 0));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Remove a client");
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
@@ -234,8 +286,14 @@ public class HomeJFrame extends javax.swing.JFrame {
         jPanel3.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 290, 40));
 
         jPanel15.setBackground(new java.awt.Color(153, 0, 0));
+        jPanel15.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel15MouseClicked(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Logout");
 
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
@@ -274,6 +332,22 @@ public class HomeJFrame extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jPanel16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel16MouseClicked
+        
+        System.exit(0);
+    }//GEN-LAST:event_jPanel16MouseClicked
+
+    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
+        // TODO add your handling code here:
+        
+        System.exit(0);
+    }//GEN-LAST:event_jLabel11MouseClicked
+
+    private void jPanel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel15MouseClicked
+        
+        new LoginJframe().setVisible(true);
+    }//GEN-LAST:event_jPanel15MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -311,6 +385,8 @@ public class HomeJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -326,6 +402,7 @@ public class HomeJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
