@@ -438,6 +438,7 @@ public class HomeJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
          LoginJframe n= new LoginJframe();
                  n.setVisible(true);
+                 dispose();
         
     }//GEN-LAST:event_jPanel17MouseClicked
 

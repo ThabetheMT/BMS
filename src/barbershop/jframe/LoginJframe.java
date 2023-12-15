@@ -296,11 +296,15 @@ public class LoginJframe extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
-        new SignupJframe().setVisible(true);
+        SignupJframe s = new SignupJframe(); 
+        s.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton4MouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        new HomeJFrame().setVisible(true);
+        HomeJFrame j = new HomeJFrame(); 
+        j.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton1MouseClicked
 
     /**

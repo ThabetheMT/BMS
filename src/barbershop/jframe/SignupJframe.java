@@ -308,12 +308,16 @@ public class SignupJframe extends javax.swing.JFrame {
 
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
         
-        new LoginJframe().setVisible(true);
+        LoginJframe l = new LoginJframe();
+        l.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton5MouseClicked
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
         
-        new HomeJFrame().setVisible(true);
+        HomeJFrame h = new HomeJFrame();
+        h.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton4MouseClicked
 
     /**
