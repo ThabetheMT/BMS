@@ -262,6 +262,9 @@ public class HomeJFrame extends javax.swing.JFrame {
 
         jPanel12.setBackground(new java.awt.Color(0, 0, 0));
         jPanel12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel12MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jPanel12MouseEntered(evt);
             }
@@ -345,6 +348,11 @@ public class HomeJFrame extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Get client by date");
+        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel9MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
         jPanel15.setLayout(jPanel15Layout);
@@ -509,6 +517,18 @@ public class HomeJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
          jPanel17.setBackground(new Color(153,0,0));
     }//GEN-LAST:event_jPanel17MouseExited
+
+    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
+        
+    }//GEN-LAST:event_jLabel9MouseClicked
+
+    private void jPanel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel12MouseClicked
+        // TODO add your handling code here:
+        
+        AddClientJframe a = new AddClientJframe();
+        a.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jPanel12MouseClicked
 
     /**
      * @param args the command line arguments
