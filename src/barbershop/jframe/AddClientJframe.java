@@ -4,19 +4,98 @@
  */
 package barbershop.jframe;
 
+import barbershop.db_connection.DBConnection;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Acer
  */
 public class AddClientJframe extends javax.swing.JFrame {
 
+    private DBConnection db;
+    private Connection con;
+    private PreparedStatement ps;
+    
     /**
      * Creates new form LoginJframe
      */
     public AddClientJframe() {
         initComponents();
+        db = new DBConnection();
     }
 
+    public String getClient(){
+        
+        String q = "Select * from client_table";
+        String name = "default";
+        
+        try {
+            con = db.con();
+            ps = con.prepareStatement(q);
+            ResultSet r = ps.executeQuery();
+            
+            while(r.next()){
+                name = r.getString("client_name");
+            }
+            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AddClientJframe.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(AddClientJframe.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return name;
+    }
+    
+    public boolean addClient(){
+        
+        String insertQuery = "insert into client_table(client_name, client_phone, haircut_type) "
+                + "values(?,?,?,?)";
+        boolean isAdded = false;
+        String name = namejTextField.getText();
+        String phoneNumber = phoneNumberjTextField.getText();
+        String haircutType = hairCutTypejComboBox.getSelectedItem().toString();
+        
+        String ageGroup = childjRadioButton.getText();
+        
+        if(ageGroup.equals("")){
+            ageGroup = adultjRadioButton.getText();
+        }
+        
+        try {
+            con = db.con();
+            
+            ps = con.prepareStatement(insertQuery);
+            ps.setString(1, name);
+            ps.setString(2, phoneNumber);
+            ps.setString(3, haircutType);
+            ps.setString(4, ageGroup);
+            
+            int count = ps.executeUpdate();
+            
+            if(count > 0){
+                isAdded = true;
+            }
+            
+            
+        } catch (ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        
+        return isAdded;
+    }
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -42,7 +121,7 @@ public class AddClientJframe extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         phoneNumberjTextField = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        hairCutTypejComboBox = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         childjRadioButton = new javax.swing.JRadioButton();
         adultjRadioButton = new javax.swing.JRadioButton();
@@ -106,7 +185,7 @@ public class AddClientJframe extends javax.swing.JFrame {
 
         namejTextField.setBackground(new java.awt.Color(0, 0, 0));
         namejTextField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        namejTextField.setForeground(new java.awt.Color(0, 102, 102));
+        namejTextField.setForeground(new java.awt.Color(255, 255, 255));
         namejTextField.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 102, 102)));
         namejTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -151,14 +230,14 @@ public class AddClientJframe extends javax.swing.JFrame {
 
         phoneNumberjTextField.setBackground(new java.awt.Color(0, 0, 0));
         phoneNumberjTextField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        phoneNumberjTextField.setForeground(new java.awt.Color(0, 102, 102));
+        phoneNumberjTextField.setForeground(new java.awt.Color(255, 255, 255));
         phoneNumberjTextField.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 102, 102)));
 
-        jComboBox1.setBackground(new java.awt.Color(0, 0, 0));
-        jComboBox1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jComboBox1.setForeground(new java.awt.Color(0, 102, 102));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 102, 102)));
+        hairCutTypejComboBox.setBackground(new java.awt.Color(0, 0, 0));
+        hairCutTypejComboBox.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        hairCutTypejComboBox.setForeground(new java.awt.Color(255, 255, 255));
+        hairCutTypejComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        hairCutTypejComboBox.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 102, 102)));
 
         jLabel4.setBackground(new java.awt.Color(0, 0, 0));
         jLabel4.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
@@ -194,7 +273,7 @@ public class AddClientJframe extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(adultjRadioButton, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(hairCutTypejComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(phoneNumberjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -230,7 +309,7 @@ public class AddClientJframe extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(hairCutTypejComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
                 .addContainerGap())
@@ -294,6 +373,13 @@ public class AddClientJframe extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         //add client to database
+       // if(addClient()){
+            JOptionPane.showMessageDialog(null, "Client's name is "+ getClient());
+       // }
+        
+      //  else{
+        // JOptionPane.showMessageDialog(null, "Failed to add client.");   
+       // }
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void namejTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_namejTextFieldActionPerformed
@@ -339,11 +425,11 @@ public class AddClientJframe extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton adultjRadioButton;
     private javax.swing.JRadioButton childjRadioButton;
+    private javax.swing.JComboBox<String> hairCutTypejComboBox;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
