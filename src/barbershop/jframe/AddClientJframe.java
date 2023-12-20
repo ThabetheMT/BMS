@@ -9,6 +9,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -34,33 +37,58 @@ public class AddClientJframe extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
         initComponents();
-       // db = new DBConnection();
+        setJComboBox();
     }
     
     public void setJComboBox(){
         
-    }
-
-    public String getClient(){
-        
-        String q = "Select * from client_table where client_id = ?";
-        String name = "default";
-        
         try {
-           // con = db.con();
-            ps = con.prepareStatement(q);
-            ps.setInt(1, 1);
+            ps = con.prepareStatement("select * from services");
             ResultSet r = ps.executeQuery();
+            List<String> list = new ArrayList<>();
             
-            if(r.next()){
-                name = r.getString("client_name");
+            while(r.next()){
+                list.add(r.getString("service_name"));
+            }
+            r.close();
+            
+            for(String s: list){
+                hairCutTypejComboBox.addItem(s);
             }
             
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
+        } catch (SQLException ex) {
+            Logger.getLogger(AddClientJframe.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        return name;
+    }
+
+ 
+    public boolean verifyEmptyFields(){
+        
+        String name = namejTextField.getText();
+        String phoneNumber = phoneNumberjTextField.getText();
+        String haircutType = hairCutTypejComboBox.getSelectedItem().toString();
+        String ageGroup = adultjRadioButton.getText();
+        
+        
+        if(name.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Enter name");
+            return false;
+        }
+        if(phoneNumber.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Enter phone number");
+            return false;
+        }
+        if(haircutType.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Choose haircut style");
+            return false;
+        }
+        if(childjRadioButton.getText().isEmpty() || adultjRadioButton.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Select either child or adult");
+            return false;
+        }
+        
+        return true;
     }
     
     public boolean addClient(){
@@ -71,12 +99,11 @@ public class AddClientJframe extends javax.swing.JFrame {
         String name = namejTextField.getText();
         String phoneNumber = phoneNumberjTextField.getText();
         String haircutType = hairCutTypejComboBox.getSelectedItem().toString();
+        String ageGroup = adultjRadioButton.getText();
         
-        String ageGroup = childjRadioButton.getText();
-        
-        if(ageGroup.equals("")){
-            ageGroup = adultjRadioButton.getText();
-        }
+        if(childjRadioButton.isSelected()){
+         ageGroup = childjRadioButton.getText();
+        }     
         
         try {
            // con = db.con();
@@ -113,6 +140,7 @@ public class AddClientJframe extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel8 = new javax.swing.JLabel();
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
@@ -208,7 +236,7 @@ public class AddClientJframe extends javax.swing.JFrame {
         jLabel3.setBackground(new java.awt.Color(0, 0, 0));
         jLabel3.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 102, 102));
-        jLabel3.setText("Phune number:");
+        jLabel3.setText("Phone number:");
 
         jButton1.setBackground(new java.awt.Color(0, 102, 102));
         jButton1.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
@@ -243,7 +271,6 @@ public class AddClientJframe extends javax.swing.JFrame {
         hairCutTypejComboBox.setBackground(new java.awt.Color(0, 0, 0));
         hairCutTypejComboBox.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         hairCutTypejComboBox.setForeground(new java.awt.Color(255, 255, 255));
-        hairCutTypejComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         hairCutTypejComboBox.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 102, 102)));
 
         jLabel4.setBackground(new java.awt.Color(0, 0, 0));
@@ -252,11 +279,13 @@ public class AddClientJframe extends javax.swing.JFrame {
         jLabel4.setText("Haircut type:");
 
         childjRadioButton.setBackground(new java.awt.Color(0, 0, 0));
+        buttonGroup1.add(childjRadioButton);
         childjRadioButton.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
         childjRadioButton.setForeground(new java.awt.Color(0, 102, 102));
         childjRadioButton.setText("Child");
 
         adultjRadioButton.setBackground(new java.awt.Color(0, 0, 0));
+        buttonGroup1.add(adultjRadioButton);
         adultjRadioButton.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
         adultjRadioButton.setForeground(new java.awt.Color(0, 102, 102));
         adultjRadioButton.setText("Adult");
@@ -380,13 +409,16 @@ public class AddClientJframe extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         //add client to database
-        if(addClient()){
+        if(verifyEmptyFields()){
+            if(addClient()){
             JOptionPane.showMessageDialog(null, "Client added successfully. ");
         }
         
        else{
          JOptionPane.showMessageDialog(null, "Oops!Failed to add client.");   
         }
+        }
+        
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void namejTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_namejTextFieldActionPerformed
@@ -431,6 +463,7 @@ public class AddClientJframe extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton adultjRadioButton;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JRadioButton childjRadioButton;
     private javax.swing.JComboBox<String> hairCutTypejComboBox;
     private javax.swing.JButton jButton1;
