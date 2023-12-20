@@ -18,37 +18,46 @@ import javax.swing.JOptionPane;
  * @author Acer
  */
 public class AddClientJframe extends javax.swing.JFrame {
-
-    private DBConnection db;
     private Connection con;
-    private PreparedStatement ps;
+// private Connection db;
+        private PreparedStatement ps;
     
     /**
      * Creates new form LoginJframe
      */
     public AddClientJframe() {
+        try {
+            this.con = DBConnection.con();
+        } catch (ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
         initComponents();
-        db = new DBConnection();
+       // db = new DBConnection();
+    }
+    
+    public void setJComboBox(){
+        
     }
 
     public String getClient(){
         
-        String q = "Select * from client_table";
+        String q = "Select * from client_table where client_id = ?";
         String name = "default";
         
         try {
-            con = db.con();
+           // con = db.con();
             ps = con.prepareStatement(q);
+            ps.setInt(1, 1);
             ResultSet r = ps.executeQuery();
             
-            while(r.next()){
+            if(r.next()){
                 name = r.getString("client_name");
             }
             
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(AddClientJframe.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(AddClientJframe.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
         }
         
         return name;
@@ -56,7 +65,7 @@ public class AddClientJframe extends javax.swing.JFrame {
     
     public boolean addClient(){
         
-        String insertQuery = "insert into client_table(client_name, client_phone, haircut_type) "
+        String insertQuery = "insert into client_table(client_name, client_phone,child_adult, haircut_type) "
                 + "values(?,?,?,?)";
         boolean isAdded = false;
         String name = namejTextField.getText();
@@ -70,13 +79,13 @@ public class AddClientJframe extends javax.swing.JFrame {
         }
         
         try {
-            con = db.con();
+           // con = db.con();
             
             ps = con.prepareStatement(insertQuery);
             ps.setString(1, name);
             ps.setString(2, phoneNumber);
-            ps.setString(3, haircutType);
-            ps.setString(4, ageGroup);
+            ps.setString(3, ageGroup);
+            ps.setString(4, haircutType);
             
             int count = ps.executeUpdate();
             
@@ -85,8 +94,6 @@ public class AddClientJframe extends javax.swing.JFrame {
             }
             
             
-        } catch (ClassNotFoundException ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
@@ -373,13 +380,13 @@ public class AddClientJframe extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         //add client to database
-       // if(addClient()){
-            JOptionPane.showMessageDialog(null, "Client's name is "+ getClient());
-       // }
+        if(addClient()){
+            JOptionPane.showMessageDialog(null, "Client added successfully. ");
+        }
         
-      //  else{
-        // JOptionPane.showMessageDialog(null, "Failed to add client.");   
-       // }
+       else{
+         JOptionPane.showMessageDialog(null, "Oops!Failed to add client.");   
+        }
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void namejTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_namejTextFieldActionPerformed

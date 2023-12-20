@@ -16,14 +16,14 @@ import java.util.logging.Logger;
  */
 public class DBConnection {
     
-    private Connection con;
+   // private Connection con;
     
-    public Connection con() throws ClassNotFoundException, SQLException{
+    public static Connection con() throws ClassNotFoundException, SQLException{
         
         String myDb = "jdbc:derby://localhost:1527/BMSDatabase";
          
-            Class.forName("org.apache.derby.jdbc.ClientDriver");
-            con = DriverManager.getConnection(myDb);
+           // Class.forName("org.apache.derby.jdbc.ClientDriver");
+            Connection con = DriverManager.getConnection(myDb,"app","123");
             
             return con;
        
